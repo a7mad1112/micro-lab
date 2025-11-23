@@ -266,3 +266,6 @@ TIMER3_LOOP:
 CODE ENDS
 END
 ```
+
+
+https://laeth-nueirat.notion.site/Academic-Courses-226f4d09b4a5807ca252fc54fcdfe597
