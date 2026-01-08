@@ -1,20 +1,12 @@
         CODE   SEGMENT
         ASSUME CS:CODE,DS:CODE,ES:CODE,SS:CODE
-        ;
-        ;
-PPI     EQU     26H 		
-CPORT   EQU     24H 	
-BPORT   EQU     22H	
-APORT   EQU     20H	
-        ;
-
-
-        ;
+PPI     EQU     26H
+CPORT   EQU     24H
+BPORT   EQU     22H
+APORT   EQU     20H
         ORG     1000H
         MOV AL, 80H
         OUT PPI, AL
-        ;
-        
 ORIG:
         MOV AL, 11111111B
         OUT BPORT, AL
@@ -25,9 +17,7 @@ AGAIN:
         CALL TIMER
         JNZ AGAIN
         JMP ORIG
-        ;
         INT 3
-        ;
 TIMER:	MOV	CX,00
 TIMER1:	NOP
 	NOP
@@ -35,7 +25,5 @@ TIMER1:	NOP
 	NOP
 	LOOP	TIMER1
 	RET
-
-
 CODE ENDS
 END

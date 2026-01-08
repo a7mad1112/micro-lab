@@ -1,22 +1,13 @@
         CODE   SEGMENT
         ASSUME CS:CODE,DS:CODE,ES:CODE,SS:CODE
-        ;
-        ;
-PPI     EQU     26H 		
-CPORT   EQU     24H 	
-BPORT   EQU     22H	
+PPI     EQU     26H
+CPORT   EQU     24H
+BPORT   EQU     22H
 APORT   EQU     20H
-KEY	EQU	01H	
-        ;
-
-
-        ;
+KEY	EQU	01H
         ORG     1000H
         MOV AL, 80H
         OUT PPI, AL
-        ;
-
-
 AGAIN:
       CALL SCAN
       MOV AL,BYTE PTR K_BUF
@@ -31,15 +22,12 @@ CALC1:
       DEC AL
       JNZ CALC1
 SKIP:
-
       MOV AL, DL
       OUT BPORT, AL
       CALL TIMER
 SKIP2:
       JMP AGAIN
-        ;
         INT 3
-        ;
 TIMER:	MOV	CX,1000
 TIMER1:	NOP
 	NOP
@@ -47,13 +35,11 @@ TIMER1:	NOP
 	NOP
 	LOOP	TIMER1
 	RET
-
 SCAN:	IN	AL,KEY
 	TEST	AL,10000000B
 	JNZ	SCAN
 	TEST	AL,00010000B
 	JNZ	SCAN
-	;
 	AND	AL,00001111B
 	MOV	BYTE PTR K_BUF,AL
 	; key clear
@@ -61,7 +47,5 @@ SCAN:	IN	AL,KEY
 	RET
 	;
 K_BUF:  DB 1
-
-
 CODE ENDS
 END
